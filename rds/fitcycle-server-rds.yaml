@@ -38,13 +38,6 @@ spec:
       containers:
       - image: gcr.io/learning-containers-187204/fitcycle-alpine:latest
         name: fitcycle-server
-        env:        
-        - name: MYSQL_ID
-          value: "db_app_user"
-        - name: MYSQL_PASSWORD
-          value: "VMware123!"
-        - name: MYSQL_SERVER
-          value: "fitcyclecustomers.cy4b7ufzt54x.us-west-2.rds.amazonaws.com" 
         ports:
         - containerPort: 8000
           name: fitcycle-server
