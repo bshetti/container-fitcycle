@@ -57,4 +57,12 @@ kubectl create -f fitcycle-server.yaml
 Open up the node port in AWS
 go to IP ADDRESS:NODEPORT on a web browser
 
+# Fitcycle connecting to RDS
+
+kubectl create -f ./rds/api-server-rds.yaml
+
+kubectl create -f ./rds/fitcycle-server-rds.yaml
+
+Follow the steps under viewing app server and testing the API
+
 
