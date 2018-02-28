@@ -52,4 +52,9 @@ REPLACE THE IP ADDRESS AND THE PORT NUMBER WITH THE APPROPRIATE IP ADDRESS AND P
 
 kubectl create -f fitcycle-server.yaml
 
+## View the application server
+
+Open up the node port in AWS
+go to IP ADDRESS:NODEPORT on a web browser
+
 
