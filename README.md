@@ -8,13 +8,13 @@ The set up below is also done with NodePort.
 
 ## Bring up the Database:
 
-kubectl create configmap db --from-literal=mysql-database: prospect
+kubectl create configmap db --from-literal=mysql-database=prospect
 
 kubectl create secret generic mysql-pass --from-literal=password=YOUR_PASSWORD
 
 kubectl create -f fitcycle-mysql-pv.yaml
 
-kubectl cp prospect.sql fitcycle-mysql-2991951145-7rkq5:prospect.sql
+kubectl cp prospect.sql [POD NAME]:prospect.sql
 
 kubectl exec -it [POD NAME] — /bin/bash
 
