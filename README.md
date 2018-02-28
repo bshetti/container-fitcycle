@@ -48,3 +48,8 @@ curl -i http://35.167.11.105:31159/api/v1.0/signups
 
 REPLACE THE IP ADDRESS AND THE PORT NUMBER WITH THE APPROPRIATE IP ADDRESS AND PORT FOR YOUR CLUSTER 
 
+## Bring up application server
+
+kubectl create -f fitcycle-server.yaml
+
+
