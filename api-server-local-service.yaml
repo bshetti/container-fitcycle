@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: local-fitcycle
+  labels:
+    app: fitcycle
+spec:
+  ports:
+    - port: 5000
+      name: http-fc
+  selector:
+    app: fitcycle
+    tier: app
+  type: NodePort
