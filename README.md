@@ -14,7 +14,7 @@ kubectl create secret generic mysql-pass --from-literal=password=YOUR_PASSWORD
 
 kubectl create -f mysql-configmap.yaml
 
-kubectl create -f fitcycle-mysql-pv.yaml
+kubectl create -f fitcycle-percona-pv.yaml
 
 #kubectl cp prospect.sql [POD NAME]:prospect.sql
 
