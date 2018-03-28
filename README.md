@@ -12,13 +12,15 @@ kubectl create configmap db --from-literal=mysql-database=prospect
 
 kubectl create secret generic mysql-pass --from-literal=password=YOUR_PASSWORD
 
+kubectl create -f mysql-configmap.yaml
+
 kubectl create -f fitcycle-mysql-pv.yaml
 
-kubectl cp prospect.sql [POD NAME]:prospect.sql
+#kubectl cp prospect.sql [POD NAME]:prospect.sql
 
-kubectl exec -it [POD NAME] — /bin/bash
+#kubectl exec -it [POD NAME] — /bin/bash
 
-mysql -u root -p prospect < prospect.sql
+#mysql -u root -p prospect < prospect.sql
 
 ## Bring up the API server
 
