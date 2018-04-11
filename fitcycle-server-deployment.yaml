@@ -11,6 +11,7 @@ spec:
       tier: app
   strategy:
     type: Recreate
+  replicas: 2
   template:
     metadata:
       labels:
@@ -18,11 +19,10 @@ spec:
         tier: app
     spec:
       volumes:
-      - name: "fitcycle-webserver-data"
-        hostPath:
-          path: "/var/lib/fitcycle-web-server"
+      - name: varlog
+        emptyDir: {}
       containers:
-      - image: gcr.io/learning-containers-187204/fitcycle-alpine:latest
+      - image: gcr.io/learning-containers-187204/fitcycle-server:latest
         name: fitcycle-server
         env:        
         - name: MYSQL_ID
@@ -38,6 +38,6 @@ spec:
         - containerPort: 8000
           name: fitcycle-server
         volumeMounts:
-        - mountPath: "/data"
-          name: "fitcycle-webserver-data"
+        - name: varlog
+          mountPath: /var/log
       
