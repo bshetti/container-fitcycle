@@ -54,18 +54,18 @@ spec:
             secretKeyRef:
               name: mysql-pass
               key: password
-        - name: MYSQL_DATABASE
-          valueFrom:
-            configMapKeyRef:
-              name: db
-              key: mysql-database
         ports:
         - containerPort: 3306
           name: fc-mysql
         volumeMounts:
-        - name: fitcycle-persistent-storage
-          mountPath: /var/lib/mysql
+        - mountPath: /var/lib/mysql
+          name: fitcycle-persistent-storage
+        - mountPath: /docker-entrypoint-initdb.d
+          name: mysql-initdb
       volumes:
       - name: fitcycle-persistent-storage
         persistentVolumeClaim:
           claimName: fc-mysql-pv-claim
+      - name: mysql-initdb
+        configMap:
+          name: mysql-initdb-config
