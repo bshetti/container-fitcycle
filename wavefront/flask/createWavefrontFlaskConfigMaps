@@ -1,0 +1,4 @@
+#!/bin/bash
+kubectl create configmap telegraf-config --from-file=telegraf-statsd.conf
+kubectl create -f wavefront-configmap.yaml
+
