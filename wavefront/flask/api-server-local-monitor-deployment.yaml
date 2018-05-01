@@ -28,7 +28,7 @@ spec:
         configMap:
           name: wavefront-output 
       containers:
-      - image: gcr.io/learning-containers-187204/fitcycle-api:latest
+      - image: gcr.io/learning-containers-187204/fitcycle-api-metrics:latest
         name: local-fitcycle
         env:        
         - name: MYSQL_ID
