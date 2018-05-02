@@ -43,7 +43,7 @@ spec:
         volumeMounts:
         - mountPath: "/data"
           name: "fitcycle-apiserver-data"
-      - image: gcr.io/learning-containers-187204/telegraf-wavefront:latest
+      - image: gcr.io/learning-containers-187204/telegraf-statsd-sc:latest
         name: telegraf-statsd
         ports:
         - name: udp-statsd
@@ -73,6 +73,3 @@ spec:
           limits:
             memory: 50Mi
             cpu: 200m
-        volumeMounts:
-        - name: wavefront-basic
-          mountPath: /etc/telegraf/telegraf.d

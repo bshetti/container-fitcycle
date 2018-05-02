@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: wavefront-stats-output
 data:
-  10-wavefront.conf: |
+  10-statsd.conf: |
     # Statsd Server
     [[inputs.statsd]]
       ## Protocol, must be "tcp", "udp4", "udp6" or "udp" (default=udp)
@@ -65,8 +65,9 @@ data:
       # [[inputs.statsd.tags]]
         # tag1 = "foo"
         # tag2 = "bar"
-     
-    # # Configuration for Wavefront proxy to send metrics to
+
+  50-wavefront.conf: |
+    # Configuration for Wavefront proxy to send metrics to
     [[outputs.wavefront]]
     # prefix = "telegraf."
       host = wavefront-proxy

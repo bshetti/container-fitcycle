@@ -46,7 +46,7 @@ spec:
         volumeMounts:
         - mountPath: "/data"
           name: "fitcycle-apiserver-data"
-      - image: telegraf
+      - image: telegraf:alpine
         name: telegraf-statsd
         ports:
         - name: statsd
