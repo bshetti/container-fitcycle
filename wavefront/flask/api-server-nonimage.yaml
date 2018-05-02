@@ -21,9 +21,12 @@ spec:
       - name: "fitcycle-apiserver-data"
         hostPath:
           path: "/var/lib/fitcycle-api-server"
-      - name: wavefront-statsd
+      - name: telegraf-config
         configMap:
-          name: wavefront-statsd 
+          name: telegraf-config
+      - name: wavefront-stats-output
+        configMap:
+          name: wavefront-stats-output 
       containers:
       - image: gcr.io/learning-containers-187204/fitcycle-api-metrics:latest
         name: local-fitcycle
@@ -43,33 +46,12 @@ spec:
         volumeMounts:
         - mountPath: "/data"
           name: "fitcycle-apiserver-data"
-      - image: gcr.io/learning-containers-187204/telegraf-wavefront:latest
+      - image: telegraf
         name: telegraf-statsd
         ports:
-        - name: udp-8092
-          containerPort: 8092
-        - name: tcp-8094
-          containerPort: 8094
-        env:
-        - name: WAVEFRONT_PROXY
-          value: wavefront-proxy
-        - name: INTERVAL
-          value: 60s
-        - name: NODE_HOSTNAME
-          valueFrom:
-            fieldRef:
-              fieldPath: spec.nodeName
-        - name: POD_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.name
-        resources:
-          requests:
-            memory: 30Mi
-            cpu: 100m
-          limits:
-            memory: 50Mi
-            cpu: 200m
+        - name: statsd
+          containerPort: 8125
+          protocol: UDP
         volumeMounts:
-        - name: wavefront-statsd
+        - name: wavefront-stats-output
           mountPath: /etc/telegraf/telegraf.d

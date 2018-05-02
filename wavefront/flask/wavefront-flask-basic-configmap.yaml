@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wavefront-basic
+data:
+  10-wavefront-basic.conf: |
+    # Read metrics about cpu usage
+    [[inputs.cpu]]
+      ## Whether to report per-cpu stats or not
+     percpu = true
+     ## Whether to report total system cpu stats or not
+     totalcpu = true
+     ## Comment this line if you want the raw CPU time metrics
+     fielddrop = ["time_*"]

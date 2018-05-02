@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: wavefront-statsd
 data:
-  10-wavefront.conf: |
+  10-wavefront-statsd.conf: |
     # Statsd Server
     [[inputs.statsd]]
       ## Protocol, must be "tcp", "udp4", "udp6" or "udp" (default=udp)

@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: wavefront-output
+  name: wavefront-stats-output
 data:
   10-wavefront.conf: |
     # Statsd Server
