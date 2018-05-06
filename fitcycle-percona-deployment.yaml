@@ -1,0 +1,43 @@
+apiVersion: apps/v1beta1 # for versions before 1.8.0 use apps/v1beta1
+kind: Deployment
+metadata:
+  name: fitcycle-mysql
+  labels:
+    app: fitcycle
+spec:
+  selector:
+    matchLabels:
+      app: fitcycle
+      tier: db
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: fitcycle
+        tier: db
+    spec:
+      containers:
+      - image: percona:5.6
+        name: fc-mysql
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-pass
+              key: password
+        ports:
+        - containerPort: 3306
+          name: fc-mysql
+        volumeMounts:
+        - mountPath: /var/lib/mysql
+          name: fitcycle-persistent-storage
+        - mountPath: /docker-entrypoint-initdb.d
+          name: mysql-initdb
+      volumes:
+      - name: fitcycle-persistent-storage
+        persistentVolumeClaim:
+          claimName: fc-mysql-pv-claim
+      - name: mysql-initdb
+        configMap:
+          name: mysql-initdb-config
