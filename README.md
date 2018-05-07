@@ -18,7 +18,7 @@ kubectl create -f fitcycle-percona-pv.yaml
 
 ## Bring up the API server
 
-kubectl create -f api-server-local.yaml
+kubectl create -f api-server-local-total.yaml
 
 ## Ensure the NODE PORTS are exposed in AWS
 
@@ -46,7 +46,7 @@ REPLACE THE IP ADDRESS AND THE PORT NUMBER WITH THE APPROPRIATE IP ADDRESS AND P
 
 ## Bring up application server
 
-kubectl create -f fitcycle-server.yaml
+kubectl create -f fitcycle-server-total.yaml
 
 ## View the application server
 
@@ -61,10 +61,3 @@ kubectl create -f ./rds/fitcycle-server-rds.yaml
 
 Follow the steps under viewing app server and testing the API
 
-# OLD COMMANDS
-
-#kubectl cp prospect.sql [POD NAME]:prospect.sql
-
-#kubectl exec -it [POD NAME] — /bin/bash
-
-#mysql -u root -p prospect < prospect.sql
