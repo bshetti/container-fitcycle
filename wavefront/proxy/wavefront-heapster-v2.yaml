@@ -1,3 +1,22 @@
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: heapster
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: system:heapster
+subjects:
+- kind: ServiceAccount
+  name: heapster
+  namespace: kube-system
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: heapster
+  namespace: kube-system
+---
 apiVersion: v1
 kind: ReplicationController
 metadata:
@@ -6,7 +25,7 @@ metadata:
     name: heapster
     version: v6
   name: heapster
-  namespace: default
+  namespace: kube-system
 spec:
   replicas: 1
   selector:
@@ -18,6 +37,7 @@ spec:
         k8s-app: heapster
         version: v6
     spec:
+      serviceAccount: "heapster"
       containers:
       - name: heapster
         image: wavefronthq/heapster-amd64:latest
@@ -25,7 +45,7 @@ spec:
         command:
         - /heapster
         - --source=kubernetes.summary_api:''
-        - --sink=wavefront:wavefront-proxy.default.svc.cluster.local:2878?clusterName=fitcycle-api-test-k8s&includeLabels=true
+        - --sink=wavefront:wavefront-proxy.default.svc.cluster.local:2878?clusterName=fitcycle-api-test-k8s-cluster&includeLabels=true
         volumeMounts:
         - name: ssl-certs
           mountPath: /etc/ssl/certs
@@ -37,4 +57,3 @@ spec:
       - name: ssl-certs
         hostPath:
           path: /etc/ssl/certs
-
