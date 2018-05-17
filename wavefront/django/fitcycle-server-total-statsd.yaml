@@ -8,14 +8,14 @@ spec:
   selector:
     matchLabels:
       app: fitcycle
-      tier: app
+      tier: web
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
         app: fitcycle
-        tier: app
+        tier: web
     spec:
       volumes:
       - name: varlog
