@@ -37,7 +37,7 @@ spec:
       - name: varlog
         emptyDir: {}
       containers:
-      - image: gcr.io/learning-containers-187204/fitcycle-server:latest
+      - image: gcr.io/learning-containers-187204/web-server-ml:latest
         name: fitcycle-server
         env:        
         - name: MYSQL_ID

@@ -8,13 +8,11 @@ The set up below is also done with NodePort.
 
 ## Bring up the Database:
 
-kubectl create configmap db --from-literal=mysql-database=prospect
-
 kubectl create secret generic mysql-pass --from-literal=password=YOUR_PASSWORD
 
 kubectl create -f mysql-configmap.yaml
 
-kubectl create -f fitcycle-percona-pv.yaml
+kubectl create -f fitcycle-percona-total.yaml
 
 ## Bring up the API server
 
