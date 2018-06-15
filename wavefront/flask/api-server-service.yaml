@@ -6,8 +6,10 @@ metadata:
     app: fitcycle
 spec:
   ports:
-    - port: 5000
-      name: api-fc
+    - name: http-fc
+      protocol: TCP
+      port: 5000
+      nodePort: 30431
   selector:
     app: fitcycle
     tier: api

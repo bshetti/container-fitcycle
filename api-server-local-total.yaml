@@ -6,8 +6,10 @@ metadata:
     app: fitcycle
 spec:
   ports:
-    - port: 5000
-      name: http-fc
+    - name: http-fc
+      protocol: TCP
+      port: 5000
+      nodePort: 30431
   selector:
     app: fitcycle
     tier: api
@@ -55,4 +57,11 @@ spec:
         volumeMounts:
         - mountPath: "/data"
           name: "fitcycle-apiserver-data"
-      
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+

@@ -8,6 +8,7 @@ spec:
   ports:
     - port: 8000
       name: http-fc-web
+      nodePort: 30440
   selector:
     app: fitcycle
     tier: app
@@ -55,4 +56,11 @@ spec:
         volumeMounts:
         - name: varlog
           mountPath: /var/log
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
       

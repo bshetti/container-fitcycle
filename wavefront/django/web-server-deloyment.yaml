@@ -39,6 +39,13 @@ spec:
         volumeMounts:
         - name: varlog
           mountPath: /var/log
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
       - image: gcr.io/learning-containers-187204/telegraf-statsd-sc:latest
         name: telegraf-statsd
         ports:
