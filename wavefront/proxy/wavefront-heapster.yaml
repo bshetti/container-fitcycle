@@ -45,7 +45,7 @@ spec:
         command:
         - /heapster
         - --source=kubernetes.summary_api:''
-        - --sink=wavefront:wavefront-proxy.default.svc.cluster.local:2878?clusterName=fitcycle-api-dev-k8s-cluster&includeLabels=true
+        - --sink=wavefront:wavefront-proxy.default.svc.cluster.local:2878?clusterName=bill-vke--cluster&includeLabels=true
         volumeMounts:
         - name: ssl-certs
           mountPath: /etc/ssl/certs
