@@ -1,0 +1,79 @@
+apiVersion: apps/v1beta1 # for versions before 1.8.0 use apps/v1beta1
+kind: Deployment
+metadata:
+  name: web-server
+  labels:
+    app: fitcycle
+spec:
+  selector:
+    matchLabels:
+      app: fitcycle
+      tier: web
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: fitcycle
+        tier: web
+    spec:
+      volumes:
+      - name: varlog
+        emptyDir: {}
+      containers:
+      - image: gcr.io/learning-containers-187204/web-server-ml:latest
+        name: web-server
+        env:        
+        - name: MYSQL_ID
+          value: "root"
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-pass
+              key: password
+        - name: MYSQL_SERVER
+          value: fitcycle-mysql
+        ports:
+        - containerPort: 8000
+          name: web-server
+        volumeMounts:
+        - name: varlog
+          mountPath: /var/log
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+      - image: gcr.io/learning-containers-187204/telegraf-statsd-sc:latest
+        name: telegraf-statsd
+        ports:
+        - name: 8125-server
+          containerPort: 8125
+          protocol: UDP
+        - name: 8092-server
+          containerPort: 8092
+        - name: 8094-server
+          containerPort: 8094
+        env:
+        - name: WAVEFRONT_PROXY
+          value: wavefront-proxy
+        - name: INTERVAL
+          value: 60s
+        - name: NODE_HOSTNAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        resources:
+          requests:
+            memory: 30Mi
+            cpu: 100m
+          limits:
+            memory: 50Mi
+            cpu: 200m
+      

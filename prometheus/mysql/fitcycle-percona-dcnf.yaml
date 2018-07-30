@@ -47,11 +47,6 @@ spec:
         - name: tcp-8094
           containerPort: 8094
         env:
-        - name: MYSQL_ROOT_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: mysql-pass
-              key: password
         - name: WAVEFRONT_PROXY
           value: wavefront-proxy
         - name: INTERVAL

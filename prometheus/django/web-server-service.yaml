@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-server
+  labels:
+    app: fitcycle
+spec:
+  ports:
+    - port: 8000
+      name: http-fc-web
+      nodePort: 30440
+  selector:
+    app: fitcycle
+    tier: web
+  type: NodePort
+

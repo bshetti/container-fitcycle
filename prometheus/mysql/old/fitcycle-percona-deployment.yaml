@@ -35,8 +35,6 @@ spec:
           name: fitcycle-persistent-storage
         - mountPath: /docker-entrypoint-initdb.d
           name: mysql-initdb
-        - mountPath: /etc/mysql/conf.d
-          name: mysql-cnf-config
       - image: gcr.io/learning-containers-187204/telegraf-wavefront:latest
         name: telegraf
         ports:
@@ -47,11 +45,6 @@ spec:
         - name: tcp-8094
           containerPort: 8094
         env:
-        - name: MYSQL_ROOT_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: mysql-pass
-              key: password
         - name: WAVEFRONT_PROXY
           value: wavefront-proxy
         - name: INTERVAL
@@ -93,8 +86,4 @@ spec:
           name: mysql-initdb-config
       - name: telegraf-mysql-config
         configMap:
-          name: telegraf-mysql-config
-      - name: mysql-cnf-config
-        configMap:
-          name: mysql-cnf-config
- 
+          name: telegraf-mysql-config 
