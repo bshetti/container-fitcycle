@@ -10,7 +10,7 @@ spec:
       protocol: TCP
       port: 5000
       nodePort: 30431
-    - name: prom
+    - name: metrics
       protocol: TCP
       port: 9273
   selector:

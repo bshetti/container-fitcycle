@@ -17,6 +17,9 @@ spec:
       labels:
         app: fitcycle
         tier: api
+      annotations:
+        prometheus.io/scrape: "true" 
+        prometheus.io/port: "9273"
     spec:
       volumes:
       - name: "fitcycle-apiserver-data"
@@ -58,7 +61,7 @@ spec:
           containerPort: 8092
         - name: tcp-8094
           containerPort: 8094
-        - name: prometheus
+        - name: metrics
           containerPort: 9273
         env:
         - name: INTERVAL
