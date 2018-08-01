@@ -1,4 +1,4 @@
-# container-fitcycle-with-telegraf-outputtoPrometheus
+# container-fitcycle-with-telegraf-output-to--Prometheus
 
 Instructions on getting this application up in a cluster:
 
@@ -70,7 +70,7 @@ REPLACE THE IP ADDRESS AND THE PORT NUMBER WITH THE APPROPRIATE IP ADDRESS AND P
 Open up the node port in AWS
 go to IP ADDRESS:NODEPORT on a web browser
 
-##Prometheus modifications for values.yaml file from helm
+## Prometheus modifications for values.yaml file from helm
 
 In the prometheus.yml section of the values.yaml file from charts/stable/helm
 
