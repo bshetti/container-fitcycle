@@ -6,14 +6,6 @@ All instructions below are based in whatever your default namespace is. If you w
 
 The set up below is also done with NodePort. 
 
-## Bring up the Wavefront Proxy
- in the proxy directory
-
-```yaml
-kubectl create -f wavefront-heapster.yaml
-kubectl create -f wavefront-proxy.yaml
-kubectl create -f wavefront-service.yaml
-
 ```
 
 ## Bring up the Database:

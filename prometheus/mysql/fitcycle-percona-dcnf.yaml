@@ -17,6 +17,9 @@ spec:
       labels:
         app: fitcycle
         tier: db
+      annotations:
+        prometheus.io/scrape: "true" 
+        prometheus.io/port: "9273"
     spec:
       containers:
       - image: percona:5.6
@@ -37,7 +40,7 @@ spec:
           name: mysql-initdb
         - mountPath: /etc/mysql/conf.d
           name: mysql-cnf-config
-      - image: gcr.io/learning-containers-187204/telegraf-wavefront:latest
+      - image: gcr.io/learning-containers-187204/telegraf-prom-output:latest
         name: telegraf
         ports:
         - name: udp-statsd
@@ -46,7 +49,14 @@ spec:
           containerPort: 8092
         - name: tcp-8094
           containerPort: 8094
+        - name: metrics
+          containerPort: 9273
         env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-pass
+              key: password
         - name: WAVEFRONT_PROXY
           value: wavefront-proxy
         - name: INTERVAL

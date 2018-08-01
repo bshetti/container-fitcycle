@@ -9,6 +9,9 @@ spec:
     - port: 8000
       name: http-fc-web
       nodePort: 30440
+    - name: metrics
+      protocol: TCP
+      port: 9273
   selector:
     app: fitcycle
     tier: web

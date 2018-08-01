@@ -13,7 +13,7 @@ data:
       ##    servers = ["user@tcp(127.0.0.1:3306)/?tls=false"]
       #
       # UPDATE THIS FIELD HERE.  USE ENV VARIABLES IF NEEDED
-      servers = ["root:password@tcp(localhost:3306)/"]
+      servers = ["root:$MYSQL_ROOT_PASSWORD@tcp(localhost:3306)/"]
       #
       ## the limits for metrics form perf_events_statements
       perf_events_statements_digest_text_limit  = 120

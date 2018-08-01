@@ -51,7 +51,7 @@ spec:
             memory: "256Mi"
             cpu: "500m"
 
-      - image: gcr.io/learning-containers-187204/telegraf-prom
+      - image: gcr.io/learning-containers-187204/telegraf-statsd-prom
         name: telegraf-prom
         ports:
         - name: udp-statsd

@@ -8,6 +8,9 @@ spec:
   ports:
     - port: 3306
       name: http-fc-db
+    - name: metrics
+      protocol: TCP
+      port: 9273
   selector:
     app: fitcycle
     tier: db

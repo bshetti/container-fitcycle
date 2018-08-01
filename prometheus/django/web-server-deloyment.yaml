@@ -16,6 +16,9 @@ spec:
       labels:
         app: fitcycle
         tier: web
+      annotations:
+        prometheus.io/scrape: "true" 
+        prometheus.io/port: "9273"
     spec:
       volumes:
       - name: varlog
@@ -46,8 +49,8 @@ spec:
           limits:
             memory: "256Mi"
             cpu: "500m"
-      - image: gcr.io/learning-containers-187204/telegraf-statsd-sc:latest
-        name: telegraf-statsd
+      - image: gcr.io/learning-containers-187204/telegraf-prom
+        name: telegraf-prom
         ports:
         - name: 8125-server
           containerPort: 8125
@@ -56,6 +59,8 @@ spec:
           containerPort: 8092
         - name: 8094-server
           containerPort: 8094
+        - name: metrics
+          containerPort: 9273
         env:
         - name: WAVEFRONT_PROXY
           value: wavefront-proxy
