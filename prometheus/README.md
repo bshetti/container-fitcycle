@@ -1,10 +1,12 @@
-# container-fitcycle
+# container-fitcycle-with-telegraf-outputtoPrometheus
 
 Instructions on getting this application up in a cluster:
 
 All instructions below are based in whatever your default namespace is. If you want to add to a specific namespace then add -n=NAMESPACE
 
 The set up below is also done with NodePort. 
+
+Once this is set up, then you can run Prometheus Helm chart with a specific configuration in the values.yaml file listed below
 
 ```
 
@@ -67,5 +69,42 @@ REPLACE THE IP ADDRESS AND THE PORT NUMBER WITH THE APPROPRIATE IP ADDRESS AND P
 
 Open up the node port in AWS
 go to IP ADDRESS:NODEPORT on a web browser
+
+##Prometheus modifications for values.yaml file from helm
+
+In the prometheus.yml section of the values.yaml file from charts/stable/helm
+
+First
+```yaml
+helm fetch stable/prometheus --untar
+```
+
+Inside the values.yaml file in the ./prometheus directory ust downloaded
+replace the section for - job-name: 'kubernetes-pods' with the following:
+
+```yaml
+      - job_name: 'kubernetes-pods'
+
+        kubernetes_sd_configs:
+        - role: pod
+
+        relabel_configs:
+        - source_labels: [__meta_kubernetes_pod_container_port_name]
+          action: keep
+          regex: metrics
+        - source_labels: [__meta_kubernetes_namespace]
+          action: keep
+          target_label: default
+
+```
+
+Now run the following command:
+
+```yaml
+ helm install --name my-release -f ./prometheus/values.yaml ./prometheus --set server.service.type=NodePort
+```
+
+prometheus should now come up and the Prometheus server should have a NodePort associated with it.
+You can now view prometheus UI at that nodeport (assuming its open)
 
 
