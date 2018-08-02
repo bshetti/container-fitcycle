@@ -20,10 +20,11 @@ spec:
         image: wavefronthq/proxy:latest
         imagePullPolicy: Always
         env:
+## ENSURE YOU PROPERLY USE THE RIGHT WAVEFRONT TOKEN
         - name: WAVEFRONT_URL
           value: https://try.wavefront.com/api/
         - name: WAVEFRONT_TOKEN
-          value: b3221983-af3c-464e-8bc4-4563b29533e3
+          value: XXXXXXXXXXX
         ports:
         - containerPort: 2878
           protocol: TCP
