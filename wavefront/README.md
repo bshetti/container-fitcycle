@@ -9,6 +9,9 @@ The set up below is also done with NodePort.
 ## Bring up the Wavefront Proxy
  in the proxy directory
 
+MAKE SURE YOU HAVE YOUR WAVEFRONT URL AND TOKEN
+CORRECT THESE VALUES IN THE wavefront-proxy.yaml file
+
 ```yaml
 kubectl create -f wavefront-heapster.yaml
 kubectl create -f wavefront-proxy.yaml
