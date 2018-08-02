@@ -54,6 +54,17 @@ fitcycle-server   LoadBalancer   100.69.2.61      a43b2d31e1612...   8000:31553/
 kubernetes        ClusterIP      100.64.0.1       <none>             443/TCP          80d
 local-fitcycle    LoadBalancer   100.69.146.247   a6e50fff01608...   5000:31159/TCP   7d
 ```
+## using the ingress yaml
+
+If you have an ingress controller running, then simply run
+
+```yaml
+kubectl create -f app-ingress.yaml
+```
+
+This will allow you to access one URL location WITHOUT the service ports.
+
+IF you DO NOT have an ingress controller, then you need to find the service port
 
 ## Testing out the API
 
@@ -71,6 +82,8 @@ Open up the node port in AWS
 go to IP ADDRESS:NODEPORT on a web browser
 
 ## Prometheus modifications for values.yaml file from helm
+
+You need to load up prometheus also for the stats to flow to prometheus.
 
 In the prometheus.yml section of the values.yaml file from charts/stable/helm
 

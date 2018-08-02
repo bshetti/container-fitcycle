@@ -13,5 +13,5 @@ data:
       `email` varchar(100) NOT NULL,
       PRIMARY KEY (`id`)
     ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
-    INSERT INTO polls_prospect VALUES (1,'b','n','nnn'),(2,'Bill','Shetti','billshetti@gmail.com'),(3,'Zoe','Shetti','zoe@gmail.com'),(4,'Zoe','Shetti','zoeshetti@gmail.com'),(5,'Emi','Shetti','e@gmail.com'),(6,'Jason','Bourne','jason@supremacy.com'),(7,'Donald','Duck','donald@disney.com'),(8,'Sean','ODell','sean@vmware.com'),(9,'Emi','Smith','emi@gmail.com'),(10,'Chris','Corde','ccorde@vmware.com');
+    INSERT INTO polls_prospect VALUES (1,'bill','north','bill@north.com'),(2,'Bill','Shetti','bill@gmail.com'),(3,'Zoe','Shetti','zoe@gmail.com'),(4,'Emi','Shetti','emi@gmail.com'),(5,'Emiko','Shetti','e@gmail.com'),(6,'Jason','Bourne','jason@supremacy.com'),(7,'Donald','Duck','donald@disney.com'),(8,'Sean','ODell','sean@vmware.com'),(9,'Bahubali','Shetti','bahubali@gmail.com'),(10,'Dan','Illson','illson@vmware.com');
 
