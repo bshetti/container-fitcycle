@@ -57,8 +57,6 @@ spec:
             secretKeyRef:
               name: mysql-pass
               key: password
-        - name: WAVEFRONT_PROXY
-          value: wavefront-proxy
         - name: INTERVAL
           value: 60s
         - name: METRIC_SOURCE_NAME

@@ -62,8 +62,6 @@ spec:
         - name: metrics
           containerPort: 9273
         env:
-        - name: WAVEFRONT_PROXY
-          value: wavefront-proxy
         - name: INTERVAL
           value: 60s
         - name: NODE_HOSTNAME
