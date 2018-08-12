@@ -7,10 +7,9 @@ metadata:
 spec:
   ports:
     - port: 8000
-      name: http-fc-web
+      name: http-fcweb
       nodePort: 30440
   selector:
     app: fitcycle
     tier: web
   type: NodePort
-
