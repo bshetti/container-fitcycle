@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: fitcycle-gateway
+  annotations:
+    kubernetes.io/ingress.class: "istio"
+spec:
+  rules:
+  -  http:
+      paths:
+      - path: /
+        backend:
+          serviceName: web-server
+          servicePort: 8000
+      - path: /api/v1.0/signups
+        backend:
+          serviceName: api-server
+          servicePort: 5000

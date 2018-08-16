@@ -1,0 +1,45 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name: wavefront
+spec:
+  hosts:
+  - try.wavefront.com
+  - try-fixed.wavefront.com
+  location: MESH_EXTERNAL
+  ports:
+  - number: 443
+    name: tls-wavefront
+    protocol: TLS
+    resolution: DNS
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: wavefront
+spec:
+  hosts:
+  - try.wavefront.com
+  - try-fixed.wavefront.com
+  tls:
+  - match:
+    - port: 443
+      sni_hosts:
+      - try.wavefront.com
+    route:
+    - destination:
+        host: try.wavefront.com
+        port:
+          number: 443
+      weight: 100
+  - match:
+    - port: 443
+      sni_hosts:
+      - try-fixed.wavefront.com
+    route:
+    - destination:
+        host: try-fixed.wavefront.com
+        port:
+          number: 443
+      weight: 100
+

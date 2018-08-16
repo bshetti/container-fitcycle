@@ -1,0 +1,54 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: fitcycle-gateway
+spec:
+  selector:
+    istio: ingressgateway # use istio default controller
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "*"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: fitcycle
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - fitcycle-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /force/forcegraph.html
+    - uri:
+        prefix: /js/
+    - uri:
+        prefix: /d3graph
+    route:
+    - destination:
+        host: servicegraph.istio-system.svc.cluster.local
+        port:
+          number: 8088
+  - match:
+    - uri:
+        exact: /api/v1.0/signups
+    route:
+    - destination:
+        host: api-server
+        port:
+          number: 5000
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        host: web-server
+        port:
+          number: 8000
+
