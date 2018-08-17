@@ -30,11 +30,21 @@ spec:
         prefix: /js/
     - uri:
         prefix: /d3graph
+    - uri:
+        prefix: /force
     route:
     - destination:
         host: servicegraph.istio-system.svc.cluster.local
         port:
           number: 8088
+  - match:
+    - uri:
+        exact: /mobile
+    route:
+    - destination:
+        host: mobile-server
+        port:
+          number: 5000
   - match:
     - uri:
         exact: /api/v1.0/signups

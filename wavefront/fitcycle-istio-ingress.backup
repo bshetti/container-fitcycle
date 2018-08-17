@@ -25,6 +25,20 @@ spec:
   http:
   - match:
     - uri:
+        prefix: /force/forcegraph.html
+    - uri:
+        prefix: /js/
+    - uri:
+        prefix: /d3graph
+    - uri:
+        prefix: /force
+    route:
+    - destination:
+        host: servicegraph.istio-system.svc.cluster.local
+        port:
+          number: 8088
+  - match:
+    - uri:
         exact: /api/v1.0/signups
     route:
     - destination:
