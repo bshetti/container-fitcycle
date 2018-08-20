@@ -5,7 +5,7 @@ metadata:
   annotations:
 spec:
   rules:
-    - host: HOSTNAME
+    - host: dev3-e938e6dc-a440-11e8-84b1-06eff62c389e.bfd7a751-b2f5-43a3-b2b3-0c82d6896aee.vke-user.com
       http:
         paths:
         - backend:

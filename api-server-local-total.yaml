@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: api-server
+  name: fitcycle-api
   labels:
     app: fitcycle
 spec:
@@ -28,7 +28,7 @@ spec:
       tier: api
   strategy:
     type: Recreate
-  replicas: 2
+  replicas: 3 
   template:
     metadata:
       labels:
@@ -39,7 +39,7 @@ spec:
       - name: fitcycle-apiserver-data 
         emptyDir: {}
       containers:
-      - image: gcr.io/learning-containers-187204/api-server-ml:latest
+      - image: gcr.io/learning-containers-187204/api-server0901:latest
         name: api-server
         env:        
         - name: MYSQL_ID

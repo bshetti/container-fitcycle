@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: fitcycle-server
+  name: fitcycle-web
   labels:
     app: fitcycle
 spec:
@@ -38,7 +38,7 @@ spec:
       - name: varlog
         emptyDir: {}
       containers:
-      - image: gcr.io/learning-containers-187204/web-server-ml:latest
+      - image: gcr.io/learning-containers-187204/web-server0901:latest
         name: fitcycle-server
         env:        
         - name: MYSQL_ID
