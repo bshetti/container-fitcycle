@@ -5,7 +5,7 @@ metadata:
   annotations:
 spec:
   rules:
-    - host: cluster822114532-973a43c4-a63b-11e8-86a9-06acd08d35a2.bfd7a751-b2f5-43a3-b2b3-0c82d6896aee.vke-user.com
+    - host: spotlight0-48b93c1c-a688-11e8-8673-02bfac942128.bfd7a751-b2f5-43a3-b2b3-0c82d6896aee.vke-user.com
       http:
         paths:
         - backend:

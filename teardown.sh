@@ -7,4 +7,5 @@ kubectl delete -f fitcycle-percona-dcnf.yaml
 kubectl delete -f fitcycle-percona-service.yaml
 kubectl delete -f api-server-local-total.yaml
 kubectl delete -f fitcycle-server-total.yaml
+kubectl delete -f mobile-server-total.yaml
 kubectl delete -f tempingress.yaml
